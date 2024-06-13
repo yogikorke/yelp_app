@@ -1,0 +1,30 @@
+ widget.businessModel.categories?.isNotEmpty ?? false
+                    ? SizedBox(
+                        height: 100.w,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: widget.businessModel.transactions!.length,
+                          itemBuilder: (context, index) {
+                            final transaction =
+                                widget.businessModel.transactions![index];
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                              child: Chip(
+                                visualDensity: VisualDensity.compact,
+                                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                labelPadding:
+                                    EdgeInsets.symmetric(horizontal: 8.w),
+                                label: Text(
+                                  transaction,
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    : const SizedBox.shrink()
