@@ -11,12 +11,12 @@ class ReviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      margin: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 4,
+      margin: EdgeInsets.symmetric(
+        vertical: 32.h,
+        horizontal: 4.w,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(32.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,18 +26,18 @@ class ReviewWidget extends StatelessWidget {
                   'Customer Name',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
-                    fontSize: 40.sp,
+                    fontSize: 40.r,
                   ),
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4,
-                    horizontal: 8,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 4.h,
+                    horizontal: 8.w,
                   ),
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(4.r),
                   ),
                   child: Row(
                     children: [
@@ -46,7 +46,7 @@ class ReviewWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.notoSans(
                           fontWeight: FontWeight.normal,
-                          fontSize: 32.sp,
+                          fontSize: 32.r,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
@@ -54,7 +54,7 @@ class ReviewWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 2.0),
                         child: Icon(
                           Icons.star,
-                          size: 12,
+                          size: 32.r,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       )
@@ -64,26 +64,27 @@ class ReviewWidget extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: EdgeInsets.symmetric(vertical: 8.h),
               child: Text(
                 '"I am really long long review so if you try to read me then you will just waste you time"',
                 style: GoogleFonts.openSans(
+                  fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.normal,
-                  fontSize: 40.sp,
+                  fontSize: 40.r,
                 ),
               ),
             ),
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: 8.h),
                 child: Text(
                   UiUtils.getDateTimeFormatter().format(
                     DateTime.now(),
                   ),
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
-                    fontSize: 32.sp,
+                    fontSize: 32.r,
                   ),
                 ),
               ),

@@ -18,7 +18,7 @@ class DistanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.w),
+      padding: EdgeInsets.only(bottom: 8.w),
       child: Row(
         children: [
           Icon(
@@ -26,7 +26,7 @@ class DistanceWidget extends StatelessWidget {
             size: size,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16.w),
+            padding: EdgeInsets.only(left: 16.r),
             child: Text(
               '${FunctionalUtils.meterToKilometer(
                 businessModel.distance ?? 0,
@@ -34,7 +34,7 @@ class DistanceWidget extends StatelessWidget {
               softWrap: true,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.openSans(
-                fontSize: 40.sp,
+                fontSize: 40.r,
                 fontWeight: FontWeight.w500,
               ),
             ),

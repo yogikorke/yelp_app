@@ -12,24 +12,24 @@ class OpenClosedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.w),
+      margin: EdgeInsets.symmetric(vertical: 16.h),
       decoration: BoxDecoration(
         border: Border.all(
           color: (businessModel.isClosed ?? true)
               ? Colors.red
               : Colors.green.shade600,
-          width: 1,
+          width: 1.w,
         ),
-        borderRadius: BorderRadius.circular(8.w),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       padding: EdgeInsets.symmetric(
         horizontal: 16.w,
-        vertical: 8.w,
+        vertical: 8.h,
       ),
       child: Text(
         (businessModel.isClosed ?? true) ? 'CLOSED' : 'OPEN',
         style: GoogleFonts.openSans(
-          fontSize: 32.sp,
+          fontSize: 32.r,
           fontWeight: FontWeight.w500,
           color: (businessModel.isClosed ?? true)
               ? Colors.red

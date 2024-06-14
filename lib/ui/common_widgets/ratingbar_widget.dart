@@ -13,11 +13,11 @@ class RatingBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.w),
+      padding: EdgeInsets.only(bottom: 8.h),
       child: Row(
         children: [
           RatingBar.builder(
-            itemSize: 64.w,
+            itemSize: 64.r,
             initialRating: businessModel.rating ?? 0.0,
             minRating: 1,
             direction: Axis.horizontal,
@@ -33,7 +33,7 @@ class RatingBarWidget extends StatelessWidget {
           Text(
             '(${businessModel.reviewCount} reviews)',
             style: GoogleFonts.openSans(
-              fontSize: 40.sp,
+              fontSize: 40.r,
               fontWeight: FontWeight.w500,
             ),
           )

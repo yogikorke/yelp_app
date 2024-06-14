@@ -35,7 +35,7 @@ class _BusinessListItemState extends State<BusinessListItem> {
       child: Card(
         elevation: 4.0,
         margin: EdgeInsets.symmetric(
-          vertical: 16.w,
+          vertical: 16.h,
           horizontal: 32.w,
         ),
         child: Column(
@@ -46,19 +46,19 @@ class _BusinessListItemState extends State<BusinessListItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(32.w),
+                  padding: EdgeInsets.all(32.r),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.w),
+                    borderRadius: BorderRadius.circular(16.r),
                     child: CachedNetworkImageWidget(
                       widget.businessModel.imageUrl ?? '',
-                      width: 300.w,
-                      height: 300.w,
+                      width: 300.r,
+                      height: 300.r,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 32.w),
+                  padding: EdgeInsets.symmetric(vertical: 32.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -69,7 +69,7 @@ class _BusinessListItemState extends State<BusinessListItem> {
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
-                            fontSize: 40.sp,
+                            fontSize: 40.r,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -77,7 +77,7 @@ class _BusinessListItemState extends State<BusinessListItem> {
                       OpenClosedWidget(businessModel: widget.businessModel),
                       DistanceWidget(
                         businessModel: widget.businessModel,
-                        size: 64.w,
+                        size: 64.r,
                       ),
                       RatingBarWidget(businessModel: widget.businessModel),
                     ],
@@ -85,38 +85,6 @@ class _BusinessListItemState extends State<BusinessListItem> {
                 ),
               ],
             ),
-            // widget.businessModel.categories?.isNotEmpty ?? false
-            //     ? Padding(
-            //         padding: EdgeInsets.only(left: 16.w, bottom: 32.w),
-            //         child: SizedBox(
-            //           height: 100.w,
-            //           child: ListView.builder(
-            //             shrinkWrap: true,
-            //             scrollDirection: Axis.horizontal,
-            //             itemCount: widget.businessModel.transactions!.length,
-            //             itemBuilder: (context, index) {
-            //               final transaction =
-            //                   widget.businessModel.transactions![index];
-            //               return Padding(
-            //                 padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-            //                 child: Chip(
-            //                   visualDensity: VisualDensity.compact,
-            //                   padding: EdgeInsets.symmetric(horizontal: 4.w),
-            //                   labelPadding: EdgeInsets.symmetric(horizontal: 8.w),
-            //                   label: Text(
-            //                     transaction,
-            //                     style: GoogleFonts.openSans(
-            //                       fontSize: 32.sp,
-            //                       fontWeight: FontWeight.w500,
-            //                     ),
-            //                   ),
-            //                 ),
-            //               );
-            //             },
-            //           ),
-            //         ),
-            //       )
-            //     : const SizedBox.shrink()
           ],
         ),
       ),

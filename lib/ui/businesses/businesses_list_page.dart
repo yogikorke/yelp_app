@@ -40,7 +40,7 @@ class _BusinessesPageState extends State<BusinessesPage> {
         title: Text(
           'Yelp Businesses',
           style: TextStyle(
-            fontSize: 56.sp,
+            fontSize: 56.r,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.onPrimary,
           ),
@@ -56,7 +56,7 @@ class _BusinessesPageState extends State<BusinessesPage> {
           } else if (state.businessesStatus == BusinessesStatus.loaded) {
             return ListView.builder(
               controller: _scrollController,
-              padding: EdgeInsets.symmetric(vertical: 32.w),
+              padding: EdgeInsets.symmetric(vertical: 32.r),
               itemCount: state.businessesList.length,
               itemBuilder: (context, index) {
                 return BusinessListItem(state.businessesList[index]);

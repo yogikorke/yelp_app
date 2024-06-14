@@ -32,12 +32,12 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
   void initializeSilverListWidget() {
     silverListWidgets.add(
       Padding(
-        padding: EdgeInsets.only(top: 16.w),
+        padding: EdgeInsets.only(top: 16.h),
         child: Row(
           children: [
             Icon(
               Icons.location_on_outlined,
-              size: 100.w,
+              size: 100.r,
             ),
             Expanded(
               child: Padding(
@@ -49,17 +49,14 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.openSans(
-                    fontSize: 40.sp,
+                    fontSize: 40.r,
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.getLightThemeData(Brightness.light)
-                        .colorScheme
-                        .onSurface,
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: EdgeInsets.only(right: 8.w),
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -67,20 +64,17 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                         .colorScheme
                         .primary,
                   ),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                      padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 8.h),
                       decoration: BoxDecoration(
-                        color: AppTheme.getLightThemeData(Brightness.light)
-                            .colorScheme
-                            .primary,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.r),
+                          topRight: Radius.circular(8.r),
                         ),
                       ),
                       child: Row(
@@ -89,43 +83,50 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                             widget.businessModel.rating.toString(),
                             style: GoogleFonts.notoSans(
                               fontWeight: FontWeight.bold,
-                              fontSize: 40.sp,
+                              fontSize: 40.r,
                               color:
                                   AppTheme.getLightThemeData(Brightness.light)
                                       .colorScheme
-                                      .onPrimary,
+                                      .primary,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 2.0),
+                            padding: EdgeInsets.only(left: 2.w),
                             child: Icon(
                               Icons.star,
-                              size: 16,
+                              size: 32.r,
                               color:
                                   AppTheme.getLightThemeData(Brightness.light)
                                       .colorScheme
-                                      .onPrimary,
+                                      .primary,
                             ),
                           ),
                         ],
                       ),
                     ),
+                    Container(
+                      height: 1.h,
+                      width: 200.r,
+                      color: AppTheme.getLightThemeData(Brightness.light)
+                          .colorScheme
+                          .primary,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(4, 2, 4, 4),
+                      padding: EdgeInsets.fromLTRB(4.w, 2.h, 4.w, 4.h),
                       child: Column(
                         children: [
                           Text(
                             widget.businessModel.reviewCount.toString(),
                             style: GoogleFonts.notoSans(
                               fontWeight: FontWeight.normal,
-                              fontSize: 32.sp,
+                              fontSize: 32.r,
                             ),
                           ),
                           Text(
                             'Reviews',
                             style: GoogleFonts.notoSans(
                               fontWeight: FontWeight.normal,
-                              fontSize: 32.sp,
+                              fontSize: 32.r,
                             ),
                           ),
                         ],
@@ -141,32 +142,38 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
     );
     silverListWidgets.add(
       Padding(
-        padding: EdgeInsets.only(left: 16.w),
+        padding: EdgeInsets.only(left: 8.w),
         child: DistanceWidget(
           businessModel: widget.businessModel,
-          size: 100.w,
+          size: 100.r,
         ),
       ),
     );
     silverListWidgets.add(
       Padding(
-        padding: EdgeInsets.only(left: 16.w),
+        padding: EdgeInsets.only(left: 8.w),
         child: Row(
           children: [
             Icon(
               Icons.room_service_outlined,
-              size: 100.w,
+              size: 100.r,
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 32.w),
+                padding: EdgeInsets.only(left: 32.r),
                 child: Wrap(
                   spacing: 8.0, // gap between adjacent chips
                   runSpacing: 4.0, // gap between lines
                   children: widget.businessModel.transactions!.map((label) {
                     return Chip(
                       visualDensity: VisualDensity.compact,
-                      label: Text(label),
+                      label: Text(
+                        label,
+                        style: GoogleFonts.openSans(
+                          fontSize: 40.r,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     );
                   }).toList(),
                 ),
@@ -179,23 +186,29 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
 
     silverListWidgets.add(
       Padding(
-        padding: EdgeInsets.only(left: 16.w),
+        padding: EdgeInsets.only(left: 8.w),
         child: Row(
           children: [
             Icon(
               Icons.category_outlined,
-              size: 100.w,
+              size: 100.r,
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 32.w),
+                padding: EdgeInsets.only(left: 32.r),
                 child: Wrap(
                   spacing: 8.0, // gap between adjacent chips
                   runSpacing: 4.0, // gap between lines
                   children: widget.businessModel.categories!.map((category) {
                     return Chip(
                       visualDensity: VisualDensity.compact,
-                      label: Text(category.title ?? ''),
+                      label: Text(
+                        category.title ?? '',
+                        style: GoogleFonts.openSans(
+                          fontSize: 40.r,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     );
                   }).toList(),
                 ),
@@ -208,29 +221,39 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
 
     silverListWidgets.add(
       Padding(
-        padding: EdgeInsets.only(top: 32.w),
+        padding: EdgeInsets.only(top: 32.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
               children: [
                 IconButton.outlined(
+                  iconSize: 64.r,
                   onPressed: () async {
                     await FlutterPhoneDirectCaller.callNumber(
                       widget.businessModel.displayPhone ?? '',
                     );
                   },
-                  icon: const Icon(Icons.phone),
+                  icon: const Icon(
+                    Icons.phone,
+                  ),
                 ),
-                Text(
-                  'Call',
-                  style: TextStyle(fontSize: 40.sp),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: Text(
+                    'Call',
+                    style: GoogleFonts.openSans(
+                      fontSize: 40.r,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 )
               ],
             ),
             Column(
               children: [
                 IconButton.outlined(
+                  iconSize: 64.r,
                   onPressed: () async {
                     final Uri url = Uri.parse(widget.businessModel.url ?? '');
                     debugPrint('URL: $url');
@@ -240,15 +263,22 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                   },
                   icon: const Icon(Icons.launch),
                 ),
-                Text(
-                  'Website',
-                  style: TextStyle(fontSize: 40.sp),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: Text(
+                    'Website',
+                    style: GoogleFonts.openSans(
+                      fontSize: 40.r,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 )
               ],
             ),
             Column(
               children: [
                 IconButton.outlined(
+                  iconSize: 64.r,
                   onPressed: () async {
                     await MapsLauncher.launchCoordinates(
                       widget.businessModel.coordinates!.latitude!,
@@ -257,9 +287,15 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                   },
                   icon: const Icon(Icons.directions_outlined),
                 ),
-                Text(
-                  'Directions',
-                  style: TextStyle(fontSize: 40.sp),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: Text(
+                    'Directions',
+                    style: GoogleFonts.openSans(
+                      fontSize: 40.r,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 )
               ],
             ),
@@ -279,14 +315,13 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            floating: true,
+            floating: false,
             pinned: true,
-            snap: false,
-            expandedHeight: 250.0,
+            expandedHeight: 700.h,
             flexibleSpace: FlexibleSpaceBar(
               expandedTitleScale: 1,
               centerTitle: true,
-              titlePadding: EdgeInsets.only(left: 16.w, bottom: 32.w),
+              titlePadding: EdgeInsets.only(left: 16.w, bottom: 32.h),
               title: IntrinsicHeight(
                 child: IntrinsicWidth(
                   child: Container(
@@ -307,9 +342,8 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
                     child: Align(
                       child: Text(
                         widget.businessModel.name ?? '',
-                        maxLines: 2,
                         style: GoogleFonts.poppins(
-                          fontSize: 56.sp,
+                          fontSize: 48.r,
                           fontWeight: FontWeight.w700,
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -320,7 +354,7 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
               ),
               background: CachedNetworkImageWidget(
                 widget.businessModel.imageUrl ?? '',
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
           ),
