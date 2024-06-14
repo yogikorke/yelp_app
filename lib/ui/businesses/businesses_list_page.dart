@@ -42,10 +42,10 @@ class _BusinessesPageState extends State<BusinessesPage> {
           style: TextStyle(
             fontSize: 56.sp,
             fontWeight: FontWeight.bold,
-            color: ThemeData.light().colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
-        backgroundColor: ThemeData.light().colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: BlocBuilder<BusinessesBloc, BusinessesStates>(
         builder: (context, state) {

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
 
 class UiUtils {
+  static DateFormat getDateTimeFormatter() {
+    DateFormat dateTimeFormatter = DateFormat('dd MMM yyyy, hh:mm a');
+    return dateTimeFormatter;
+  }
+
   static void showInformationalDialog(
     BuildContext context,
     String title,

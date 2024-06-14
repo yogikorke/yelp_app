@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yelp_app/bloc/businesses/businesses_bloc.dart';
-import 'package:yelp_app/ui/businesses/businesses_page.dart';
+import 'package:yelp_app/ui/businesses/businesses_list_page.dart';
 import 'package:yelp_app/values/app_themes.dart';
 
 void main() {
