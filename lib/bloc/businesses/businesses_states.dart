@@ -13,10 +13,12 @@ class BusinessesStates extends Equatable {
 
   BusinessesStates copyWith({List<BusinessModel>? businessesList}) {
     return BusinessesStates(
-      businessesList: businessesList ?? this.businessesList,
-      businessesStatus: businessesList!.isEmpty
-          ? BusinessesStatus.loading
-          : BusinessesStatus.loaded,
+      businessesList: businessesList != null
+          ? [...this.businessesList, ...businessesList]
+          : this.businessesList,
+      businessesStatus: businessesList != null && businessesList.isNotEmpty
+          ? BusinessesStatus.loaded
+          : BusinessesStatus.loading,
     );
   }
 

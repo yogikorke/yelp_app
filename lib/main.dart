@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         return BlocProvider(
           create: (context) => BusinessesBloc(),
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Yelp App',
             theme: AppTheme.getLightThemeData(Brightness.light),
             home: const BusinessesPage(),

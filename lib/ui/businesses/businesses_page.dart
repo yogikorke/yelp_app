@@ -6,6 +6,7 @@ import '../../bloc/businesses/businesses_bloc.dart';
 import '../../bloc/businesses/businesses_events.dart';
 import '../../bloc/businesses/businesses_states.dart';
 import '../../values/app_enums.dart';
+
 import 'business_list_item.dart';
 
 class BusinessesPage extends StatefulWidget {
@@ -16,9 +17,18 @@ class BusinessesPage extends StatefulWidget {
 }
 
 class _BusinessesPageState extends State<BusinessesPage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // The user has reached the end of the list
+        context.read<BusinessesBloc>().add(BusinessesFetched());
+      }
+    });
 
     context.read<BusinessesBloc>().add(BusinessesFetched());
   }
@@ -30,10 +40,12 @@ class _BusinessesPageState extends State<BusinessesPage> {
         title: Text(
           'Yelp Businesses',
           style: TextStyle(
-            fontSize: 64.sp,
+            fontSize: 56.sp,
             fontWeight: FontWeight.bold,
+            color: ThemeData.light().colorScheme.onPrimary,
           ),
         ),
+        backgroundColor: ThemeData.light().colorScheme.primary,
       ),
       body: BlocBuilder<BusinessesBloc, BusinessesStates>(
         builder: (context, state) {
@@ -43,6 +55,7 @@ class _BusinessesPageState extends State<BusinessesPage> {
             );
           } else if (state.businessesStatus == BusinessesStatus.loaded) {
             return ListView.builder(
+              controller: _scrollController,
               padding: EdgeInsets.symmetric(vertical: 32.w),
               itemCount: state.businessesList.length,
               itemBuilder: (context, index) {
@@ -57,5 +70,11 @@ class _BusinessesPageState extends State<BusinessesPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

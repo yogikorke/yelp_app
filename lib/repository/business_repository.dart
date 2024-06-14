@@ -7,19 +7,26 @@ import 'package:yelp_app/model/business_model.dart';
 import 'package:yelp_app/values/app_assets.dart';
 
 class BusinessRepository {
+  int paginationOffset = 0;
+
   Future<List<BusinessModel>> getBusinesses() async {
     // Fetch businesses from API
     try {
+      String apiUrl =
+          'https://api.yelp.com/v3/businesses/search?location=San+Francisco&limit=10&offset=$paginationOffset';
+      debugPrint('API URL: $apiUrl');
+
       final response = await get(
-        Uri.parse(
-            'https://api.yelp.com/v3/businesses/search?location=San+Francisco&limit=10'),
+        Uri.parse(apiUrl),
         headers: {
           'Authorization':
               'Bearer bza6Hp9uiEWv2F86OSEycfB9Sc7-7G9FfMZ1JgtQM3cqSpEnG6CsF_IzpEmouNAdfiXcvmL4DSbMqbsp6jmWpyKJ-DG7-FzN3hfqXxjvQ_jfgvZQWXr5yN9pdIrjZXYx'
         },
       );
+
       final List<BusinessModel> businesses = [];
       if (response.statusCode == 200) {
+        paginationOffset += 10;
         final data = response.body;
         final json = jsonDecode(data);
 

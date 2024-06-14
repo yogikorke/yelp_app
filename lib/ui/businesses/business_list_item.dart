@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yelp_app/ui/common_widgets/cached_network_image_widget.dart';
 import 'package:yelp_app/utils/functional_utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:yelp_app/values/app_themes.dart';
@@ -37,13 +37,8 @@ class _BusinessListItemState extends State<BusinessListItem> {
                 padding: EdgeInsets.all(32.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.w),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.businessModel.imageUrl ?? '',
-                    placeholder: (context, url) => SizedBox(
-                      width: 16.w,
-                      height: 16.w,
-                      child: const CircularProgressIndicator(),
-                    ),
+                  child: CachedNetworkImageWidget(
+                    widget.businessModel.imageUrl ?? '',
                     width: 300.w,
                     height: 300.w,
                     fit: BoxFit.cover,
@@ -62,7 +57,7 @@ class _BusinessListItemState extends State<BusinessListItem> {
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
-                          fontSize: 48.sp,
+                          fontSize: 40.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -70,9 +65,12 @@ class _BusinessListItemState extends State<BusinessListItem> {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 8.w),
                       decoration: BoxDecoration(
-                        color: (widget.businessModel.isClosed ?? true)
-                            ? Colors.red
-                            : Colors.green.shade600,
+                        border: Border.all(
+                          color: (widget.businessModel.isClosed ?? true)
+                              ? Colors.red
+                              : Colors.green.shade600,
+                          width: 1,
+                        ),
                         borderRadius: BorderRadius.circular(8.w),
                       ),
                       padding: EdgeInsets.symmetric(
@@ -86,7 +84,9 @@ class _BusinessListItemState extends State<BusinessListItem> {
                         style: GoogleFonts.openSans(
                           fontSize: 32.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                          color: (widget.businessModel.isClosed ?? true)
+                              ? Colors.red
+                              : Colors.green.shade600,
                         ),
                       ),
                     ),
@@ -125,10 +125,7 @@ class _BusinessListItemState extends State<BusinessListItem> {
                             itemCount: 5,
                             itemBuilder: (context, _) => Icon(
                               Icons.star,
-                              color:
-                                  AppTheme.getLightThemeData(Brightness.light)
-                                      .colorScheme
-                                      .primary,
+                              color: ThemeData.light().colorScheme.primary,
                             ),
                             onRatingUpdate: (rating) {},
                             tapOnlyMode: true,
