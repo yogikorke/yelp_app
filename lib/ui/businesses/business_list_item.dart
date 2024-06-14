@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:yelp_app/ui/common_widgets/cached_network_image_widget.dart';
 import 'package:yelp_app/utils/functional_utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:yelp_app/values/app_themes.dart';
 
 import '../../model/business_model.dart';
 
