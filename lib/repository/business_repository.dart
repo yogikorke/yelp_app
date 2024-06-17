@@ -9,12 +9,13 @@ import 'package:yelp_app/values/app_assets.dart';
 class BusinessRepository {
   final List<BusinessModel> businesses = [];
   int paginationOffset = 0;
-  bool testWithJson = false;
+  /// Set to true when API quota is reached OR when running test cases for mocking data
+  bool testMode = false;
 
   Future<List<BusinessModel>> getBusinesses() async {
     // Fetch businesses from API
     try {
-      if (!testWithJson) {
+      if (!testMode) {
         String apiUrl =
             'https://api.yelp.com/v3/businesses/search?location=San+Francisco&limit=10&offset=$paginationOffset';
         //debugPrint('API URL: $apiUrl');

@@ -1,22 +1,24 @@
-class BusinessModel {
-  String? id;
-  String? alias;
-  String? name;
-  String? imageUrl;
-  bool? isClosed;
-  String? url;
-  int? reviewCount;
-  List<Categories>? categories;
-  double? rating;
-  Coordinates? coordinates;
-  List<String>? transactions;
-  String? price;
-  Location? location;
-  String? phone;
-  String? displayPhone;
-  double? distance;
+import 'package:equatable/equatable.dart';
 
-  BusinessModel(
+class BusinessModel extends Equatable {
+  final String? id;
+  final String? alias;
+  final String? name;
+  final String? imageUrl;
+  final bool? isClosed;
+  final String? url;
+  final int? reviewCount;
+  final List<Categories>? categories;
+  final double? rating;
+  final Coordinates? coordinates;
+  final List<String>? transactions;
+  final String? price;
+  final Location? location;
+  final String? phone;
+  final String? displayPhone;
+  final double? distance;
+
+  const BusinessModel(
       {this.id,
       this.alias,
       this.name,
@@ -34,110 +36,136 @@ class BusinessModel {
       this.displayPhone,
       this.distance});
 
-  BusinessModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    alias = json['alias'];
-    name = json['name'];
-    imageUrl = json['image_url'];
-    isClosed = json['is_closed'];
-    url = json['url'];
-    reviewCount = json['review_count'];
-    if (json['categories'] != null) {
-      categories = <Categories>[];
-      json['categories'].forEach((v) {
-        categories!.add(Categories.fromJson(v));
-      });
-    }
-    rating = json['rating'];
-    coordinates = json['coordinates'] != null
-        ? Coordinates.fromJson(json['coordinates'])
-        : null;
-    transactions = json['transactions'].cast<String>();
-    price = json['price'];
-    location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
-    phone = json['phone'];
-    displayPhone = json['display_phone'];
-    distance = json['distance'];
+  factory BusinessModel.fromJson(Map<String, dynamic> json) {
+    return BusinessModel(
+      id: json['id'],
+      alias: json['alias'],
+      name: json['name'],
+      imageUrl: json['image_url'],
+      isClosed: json['is_closed'],
+      url: json['url'],
+      reviewCount: json['review_count'],
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => Categories.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      rating: (json['rating'] as num?)?.toDouble(),
+      coordinates: json['coordinates'] != null
+          ? Coordinates.fromJson(json['coordinates'])
+          : null,
+      transactions: (json['transactions'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      price: json['price'],
+      location:
+          json['location'] != null ? Location.fromJson(json['location']) : null,
+      phone: json['phone'],
+      displayPhone: json['display_phone'],
+      distance: (json['distance'] as num?)?.toDouble(),
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['alias'] = alias;
-    data['name'] = name;
-    data['image_url'] = imageUrl;
-    data['is_closed'] = isClosed;
-    data['url'] = url;
-    data['review_count'] = reviewCount;
-    if (categories != null) {
-      data['categories'] = categories!.map((v) => v.toJson()).toList();
-    }
-    data['rating'] = rating;
-    if (coordinates != null) {
-      data['coordinates'] = coordinates!.toJson();
-    }
-    data['transactions'] = transactions;
-    data['price'] = price;
-    if (location != null) {
-      data['location'] = location!.toJson();
-    }
-    data['phone'] = phone;
-    data['display_phone'] = displayPhone;
-    data['distance'] = distance;
-    return data;
+    return {
+      'id': id,
+      'alias': alias,
+      'name': name,
+      'image_url': imageUrl,
+      'is_closed': isClosed,
+      'url': url,
+      'review_count': reviewCount,
+      'categories': categories?.map((e) => e.toJson()).toList(),
+      'rating': rating,
+      'coordinates': coordinates?.toJson(),
+      'transactions': transactions,
+      'price': price,
+      'location': location?.toJson(),
+      'phone': phone,
+      'display_phone': displayPhone,
+      'distance': distance,
+    };
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        alias,
+        name,
+        imageUrl,
+        isClosed,
+        url,
+        reviewCount,
+        categories,
+        rating,
+        coordinates,
+        transactions,
+        price,
+        location,
+        phone,
+        displayPhone,
+        distance,
+      ];
 }
 
-class Categories {
-  String? alias;
-  String? title;
 
-  Categories({this.alias, this.title});
+class Categories extends Equatable {
+  final String? alias;
+  final String? title;
 
-  Categories.fromJson(Map<String, dynamic> json) {
-    alias = json['alias'];
-    title = json['title'];
+  const Categories({this.alias, this.title});
+
+  factory Categories.fromJson(Map<String, dynamic> json) {
+    return Categories(
+      alias: json['alias'],
+      title: json['title'],
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['alias'] = alias;
-    data['title'] = title;
-    return data;
+    return {
+      'alias': alias,
+      'title': title,
+    };
   }
+
+  @override
+  List<Object?> get props => [alias, title];
 }
 
-class Coordinates {
-  double? latitude;
-  double? longitude;
+class Coordinates extends Equatable {
+  final double? latitude;
+  final double? longitude;
 
-  Coordinates({this.latitude, this.longitude});
+  const Coordinates({this.latitude, this.longitude});
 
-  Coordinates.fromJson(Map<String, dynamic> json) {
-    latitude = json['latitude'];
-    longitude = json['longitude'];
+  factory Coordinates.fromJson(Map<String, dynamic> json) {
+    return Coordinates(
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    return data;
+    return {
+      'latitude': latitude,
+      'longitude': longitude,
+    };
   }
+
+  @override
+  List<Object?> get props => [latitude, longitude];
 }
 
-class Location {
-  String? address1;
-  String? address2;
-  String? address3;
-  String? city;
-  String? zipCode;
-  String? country;
-  String? state;
-  List<String>? displayAddress;
+class Location extends Equatable {
+  final String? address1;
+  final String? address2;
+  final String? address3;
+  final String? city;
+  final String? zipCode;
+  final String? country;
+  final String? state;
+  final List<String>? displayAddress;
 
-  Location(
+  const Location(
       {this.address1,
       this.address2,
       this.address3,
@@ -147,27 +175,43 @@ class Location {
       this.state,
       this.displayAddress});
 
-  Location.fromJson(Map<String, dynamic> json) {
-    address1 = json['address1'];
-    address2 = json['address2'];
-    address3 = json['address3'];
-    city = json['city'];
-    zipCode = json['zip_code'];
-    country = json['country'];
-    state = json['state'];
-    displayAddress = json['display_address'].cast<String>();
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      address1: json['address1'],
+      address2: json['address2'],
+      address3: json['address3'],
+      city: json['city'],
+      zipCode: json['zip_code'],
+      country: json['country'],
+      state: json['state'],
+      displayAddress: (json['display_address'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['address1'] = address1;
-    data['address2'] = address2;
-    data['address3'] = address3;
-    data['city'] = city;
-    data['zip_code'] = zipCode;
-    data['country'] = country;
-    data['state'] = state;
-    data['display_address'] = displayAddress;
-    return data;
+    return {
+      'address1': address1,
+      'address2': address2,
+      'address3': address3,
+      'city': city,
+      'zip_code': zipCode,
+      'country': country,
+      'state': state,
+      'display_address': displayAddress,
+    };
   }
+
+  @override
+  List<Object?> get props => [
+        address1,
+        address2,
+        address3,
+        city,
+        zipCode,
+        country,
+        state,
+        displayAddress,
+      ];
 }
