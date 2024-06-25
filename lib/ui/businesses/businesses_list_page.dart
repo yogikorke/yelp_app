@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../bloc/businesses/businesses_bloc.dart';
 import '../../bloc/businesses/businesses_events.dart';
@@ -38,7 +39,7 @@ class _BusinessesPageState extends State<BusinessesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Yelp Businesses',
+          AppLocalizations.of(context)!.helloWorld,
           style: TextStyle(
             fontSize: 56.r,
             fontWeight: FontWeight.bold,

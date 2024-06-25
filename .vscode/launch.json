@@ -105,6 +105,14 @@
                 "--web-renderer",
                 "canvaskit"
             ]
-        }
+        },
+        {
+            "name": "Android in Profile mode",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "console": "debugConsole",
+            "flutterMode": "profile",
+        },
     ]
 }
